@@ -1,0 +1,21 @@
+/* hello.css */
+
+/* Styling for the entire hello view */
+.root {
+
+}
+
+/* Styling for specific nodes in the hello view */
+#pnLogin {
+
+}
+
+#registerButton {
+    -fx-background-color: #007bff; /* Set background color for register button */
+    -fx-text-fill: #ffffff; /* Set text color for register button */
+}
+
+#Loginbtn {
+    -fx-background-color: #007bff; /* Set background color for login button */
+    -fx-text-fill: #ffffff; /* Set text color for login button */
+}

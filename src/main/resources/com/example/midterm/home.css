@@ -1,0 +1,21 @@
+/* home.css */
+
+/* Styling for the entire home view */
+.root {
+
+}
+
+/* Styling for specific nodes in the home view */
+#pnLogout {
+
+}
+
+#Logoutbtn {
+    -fx-background-color: #ff3333; /* Set background color for logout button */
+    -fx-text-fill: #ffffff; /* Set text color for logout button */
+}
+
+#registerButton {
+    -fx-background-color: #007bff; /* Set background color for register button */
+    -fx-text-fill: #ffffff; /* Set text color for register button */
+}
