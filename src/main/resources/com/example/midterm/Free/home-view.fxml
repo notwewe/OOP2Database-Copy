@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pnLogout" prefHeight="501.0" prefWidth="520.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.midterm.Free.HomeController">
+   <children>
+      <Button fx:id="Logoutbtn" layoutX="22.0" layoutY="44.0" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
+      <ToggleButton fx:id="darkModeToggle" layoutX="22.0" layoutY="84.0" mnemonicParsing="false" onAction="#toggleDarkMode" text="Dark Mode" />
+
+      <!-- New buttons -->
+      <Button fx:id="editAccountBtn" layoutX="22.0" layoutY="124.0" mnemonicParsing="false" text="Edit Account" />
+      <Button fx:id="deleteAccountBtn" layoutX="22.0" layoutY="164.0" mnemonicParsing="false" text="Delete Account" />
+   </children>
+</AnchorPane>

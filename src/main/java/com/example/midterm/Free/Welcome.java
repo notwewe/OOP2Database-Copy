@@ -1,4 +1,4 @@
-package com.example.midterm;
+package com.example.midterm.Free;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,14 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.*;
-import java.net.URL;
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 public class Welcome {
 
@@ -25,15 +21,7 @@ public class Welcome {
     @FXML
     private TextField usernameField;
 
-
-    private final String filePath = "user_credentials.txt";
-
-    // Map to store usernames and passwords
-    private Map<String, String> users = new HashMap<>();
-
-    public Welcome() {
-        loadUserCredentials();
-    }
+    private final CRUD crud = new CRUD();
 
     @FXML
     void redirectToLogin(ActionEvent event) throws IOException {
@@ -58,38 +46,15 @@ public class Welcome {
             return;
         }
 
-        if (users.containsKey(username)) {
+        if (crud.readData(username)) {
             showAlert(Alert.AlertType.ERROR, "Error", "Username Exists", "Username already exists. Please choose another one.");
             return;
         }
 
-        users.put(username, password);
-        saveUserCredentials();
-        showAlert(Alert.AlertType.INFORMATION, "Success", "Registration Successful", "You have successfully registered.");
-    }
-
-    private void loadUserCredentials() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(":");
-                if (parts.length == 2) {
-                    users.put(parts[0], parts[1]);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void saveUserCredentials() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            for (Map.Entry<String, String> entry : users.entrySet()) {
-                writer.write(entry.getKey() + ":" + entry.getValue());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (crud.insertData(username, password)) {
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Registration Successful", "You have successfully registered.");
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Error", "Registration Failed", "Registration failed. Please try again later.");
         }
     }
 

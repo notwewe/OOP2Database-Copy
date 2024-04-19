@@ -1,0 +1,17 @@
+.root {
+
+}
+
+#pnLogout {
+
+}
+
+#Logoutbtn {
+    -fx-background-color: #ff3333;
+    -fx-text-fill: #ffffff''
+}
+
+#registerButton {
+    -fx-background-color: #007bff;
+    -fx-text-fill: #ffffff;
+}

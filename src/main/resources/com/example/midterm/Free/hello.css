@@ -1,0 +1,17 @@
+.root {
+
+}
+
+#pnLogin {
+
+}
+
+#registerButton {
+    -fx-background-color: #007bff;
+    -fx-text-fill: #ffffff;
+}
+
+#Loginbtn {
+    -fx-background-color: #007bff;
+    -fx-text-fill: #ffffff;
+}

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="pnLogout" prefHeight="358.0" prefWidth="389.0" stylesheets="@welcome.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.midterm.Welcome">
+<AnchorPane fx:id="pnLogout" prefHeight="358.0" prefWidth="389.0" stylesheets="@welcome.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.midterm.Free.Welcome">
     <children>
         <GridPane layoutX="14.0" layoutY="21.0" prefHeight="322.0" prefWidth="388.0">
             <columnConstraints>

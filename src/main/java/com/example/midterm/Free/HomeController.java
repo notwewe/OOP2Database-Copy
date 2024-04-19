@@ -1,4 +1,4 @@
-package com.example.midterm;
+package com.example.midterm.Free;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

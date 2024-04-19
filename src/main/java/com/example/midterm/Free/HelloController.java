@@ -1,4 +1,4 @@
-package com.example.midterm;
+package com.example.midterm.Free;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,11 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class HelloController {
@@ -28,28 +28,8 @@ public class HelloController {
 
     @FXML
     private TextField PasswordField;
-    private final String filePath = "user_credentials.txt";
 
-
-    private Map<String, String> users = new HashMap<>();
-
-    public HelloController() {
-        loadUserCredentials();
-    }
-
-    private void loadUserCredentials() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(":");
-                if (parts.length == 2) {
-                    users.put(parts[0], parts[1]);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    private final CRUD crud = new CRUD();
 
     @FXML
     protected void onHelloButtonClick() throws IOException {
@@ -61,7 +41,7 @@ public class HelloController {
             return;
         }
 
-        if (users.containsKey(username) && users.get(username).equals(password)) {
+        if (crud.readData(username, password)) {
             loadHomePage();
         } else {
             showAlert(Alert.AlertType.ERROR, "Error", "Invalid Credentials", "Incorrect username or password.");

@@ -1,0 +1,22 @@
+.root {
+
+}
+
+#pnLogin {
+    -fx-padding: 20;
+}
+
+#registerButton {
+    -fx-background-color: #007bff;
+    -fx-text-fill: #ffffff;
+}
+
+#Loginbtn {
+    -fx-background-color: #007bff;
+    -fx-text-fill: #ffffff;
+}
+
+#alreadyHaveAccountLabel {
+    -fx-font-size: 14px;
+    -fx-text-fill: #808080;
+}
