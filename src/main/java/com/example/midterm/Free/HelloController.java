@@ -51,8 +51,6 @@ public class HelloController {
         pnLogin.getChildren().clear();
         pnLogin.getChildren().add(scene);
 
-        UsernameField.clear();
-        PasswordField.clear();
     }
 
     protected void showAlert(Alert.AlertType alertType, String title, String header, String content) {

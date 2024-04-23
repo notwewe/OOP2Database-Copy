@@ -52,6 +52,8 @@ public class Welcome {
         }
 
         if (crud.insertData(username, password)) {
+            usernameField.clear();
+            passwordField.clear();
             showAlert(Alert.AlertType.INFORMATION, "Success", "Registration Successful", "You have successfully registered.");
         } else {
             showAlert(Alert.AlertType.ERROR, "Error", "Registration Failed", "Registration failed. Please try again later.");

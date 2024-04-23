@@ -28,7 +28,15 @@ public class HomeController {
     private Button Logoutbtn;
 
     @FXML
+    private Label currentUsernameLabel;
+
+    @FXML
     void initialize() {
+        // Initialize the current username label with the current user's username
+        String currentUsername = CurrentUser.getCurrentUser();
+        if (currentUsername != null) {
+            currentUsernameLabel.setText("Welcome, " + currentUsername + "!");
+        }
     }
 
     @FXML
@@ -90,6 +98,8 @@ public class HomeController {
             newPasswordField.clear();
             confirmPasswordField.clear();
             showAlert(Alert.AlertType.INFORMATION, "Success", "Account Updated", "Your account has been successfully updated.");
+            currentUsernameLabel.setText("Welcome, " + newUsername + "!");
+
         } else {
             showAlert(Alert.AlertType.ERROR, "Error", "Update Failed", "Failed to update account. Please try again.");
         }
@@ -142,6 +152,7 @@ public class HomeController {
 
                 boolean success = deleteAccountFromDatabase(username);
                 if (success) {
+                    System.out.println("Account deletion successful!");
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                     successAlert.setTitle("Account Deleted");
                     successAlert.setHeaderText(null);
