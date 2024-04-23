@@ -85,7 +85,7 @@ public class HomeController {
         }
         if (updateAccount(newUsername, newPassword)) {
             System.out.println("Account update successful!");
-            editAccountForm.setVisible(false); // Hide the edit account form
+            editAccountForm.setVisible(false);
             currentUsernameField.clear();
             newPasswordField.clear();
             confirmPasswordField.clear();
@@ -111,7 +111,6 @@ public class HomeController {
 
                 int rowsAffected = preparedStatement.executeUpdate();
                 if (rowsAffected > 0) {
-                    // Update the current user
                     CurrentUser.setCurrentUser(newUsername);
                     return true;
                 } else {

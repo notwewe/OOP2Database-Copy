@@ -39,7 +39,7 @@ public class HelloController {
 
         if (crud.readData(username, password)) {
             System.out.println("Login successful!");
-            setCurrentUserAfterLogin(username); // Set the current user
+            setCurrentUserAfterLogin(username);
             loadHomePage();
         } else {
             showAlert(Alert.AlertType.ERROR, "Error", "Invalid Credentials", "Incorrect username or password.");
@@ -73,12 +73,10 @@ public class HelloController {
 
     @FXML
     protected void onRegisterButtonClick() throws IOException {
-        // Redirect to the welcome view (FXML) when the register button is clicked
         Parent welcomeScene = FXMLLoader.load(getClass().getResource("welcome.fxml"));
         UsernameField.getScene().setRoot(welcomeScene);
     }
 
-    // Set the current user after a successful login
     private void setCurrentUserAfterLogin(String username) {
         CurrentUser.setCurrentUser(username);
     }
