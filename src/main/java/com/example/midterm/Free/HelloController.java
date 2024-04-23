@@ -9,10 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Objects;
 
 public class HelloController {
@@ -42,6 +38,8 @@ public class HelloController {
         }
 
         if (crud.readData(username, password)) {
+            System.out.println("Login successful!");
+            setCurrentUserAfterLogin(username); // Set the current user
             loadHomePage();
         } else {
             showAlert(Alert.AlertType.ERROR, "Error", "Invalid Credentials", "Incorrect username or password.");
@@ -78,5 +76,10 @@ public class HelloController {
         // Redirect to the welcome view (FXML) when the register button is clicked
         Parent welcomeScene = FXMLLoader.load(getClass().getResource("welcome.fxml"));
         UsernameField.getScene().setRoot(welcomeScene);
+    }
+
+    // Set the current user after a successful login
+    private void setCurrentUserAfterLogin(String username) {
+        CurrentUser.setCurrentUser(username);
     }
 }

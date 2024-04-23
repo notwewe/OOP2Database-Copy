@@ -8,8 +8,21 @@
       <Button fx:id="Logoutbtn" layoutX="22.0" layoutY="44.0" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
       <ToggleButton fx:id="darkModeToggle" layoutX="22.0" layoutY="84.0" mnemonicParsing="false" onAction="#toggleDarkMode" text="Dark Mode" />
 
-      <!-- New buttons -->
-      <Button fx:id="editAccountBtn" layoutX="22.0" layoutY="124.0" mnemonicParsing="false" text="Edit Account" />
-      <Button fx:id="deleteAccountBtn" layoutX="22.0" layoutY="164.0" mnemonicParsing="false" text="Delete Account" />
+      <!-- Edit Account Button -->
+      <Button fx:id="editAccountBtn" layoutX="21.0" layoutY="166.0" onAction="#toggleEditAccount" text="Edit Account" />
+
+      <!-- Edit Account Form -->
+      <VBox fx:id="editAccountForm" layoutX="186.0" layoutY="44.0" spacing="10" visible="false">
+         <Label text="New Username:" />
+         <TextField fx:id="currentUsernameField" />
+         <Label text="New Password:" />
+         <PasswordField fx:id="newPasswordField" />
+         <Label text="Confirm Password:" />
+         <PasswordField fx:id="confirmPasswordField" />
+         <Button fx:id="saveChangesBtn" onAction="#saveChanges" text="Save Changes" />
+      </VBox>
+
+      <!-- Delete Account Button -->
+      <Button fx:id="deleteAccountBtn" layoutX="21.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleDeleteAccount" text="Delete Account" />
    </children>
 </AnchorPane>

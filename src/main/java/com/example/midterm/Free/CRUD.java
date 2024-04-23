@@ -12,7 +12,7 @@ public class CRUD {
             statement.setString(1, username);
             statement.setString(2, password);
             int num = statement.executeUpdate();
-            System.out.println("Rows inserted: " + num);
+            System.out.println("Account created successfully!");
             if(num != 0) inserted = true;
         }catch (SQLException e){
             System.out.println("Exception in insertData");
