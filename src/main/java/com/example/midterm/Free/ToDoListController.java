@@ -108,16 +108,15 @@ public class ToDoListController {
     void handleDeleteTask() {
         Task selectedTask = taskTableView.getSelectionModel().getSelectedItem();
         if (selectedTask != null) {
+            System.out.println("Selected task id: " + selectedTask.getId());
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirm Deletion");
             alert.setHeaderText("Delete Task");
             alert.setContentText("Are you sure you want to delete this task?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-
                 boolean deleted = CRUDTodo.deleteTask(selectedTask.getId());
                 if (deleted) {
-
                     showAlert("Task Deleted", "The selected task has been deleted.");
                     loadUserTasks();
                 } else {
@@ -128,6 +127,7 @@ public class ToDoListController {
             showAlert("No Task Selected", "Please select a task to delete.");
         }
     }
+
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

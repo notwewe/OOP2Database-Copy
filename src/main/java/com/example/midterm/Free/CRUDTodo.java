@@ -58,13 +58,13 @@ public class CRUDTodo {
             statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-
+                int id = resultSet.getInt("id");
                 String title = resultSet.getString("title");
                 String description = resultSet.getString("description");
                 String date = resultSet.getString("date");
                 String time = resultSet.getString("time");
 
-                Task task = new Task(userId, title, description, date, time);
+                Task task = new Task(id, title, description, date, time);
 
                 tasks.add(task);
             }
@@ -74,6 +74,7 @@ public class CRUDTodo {
         }
         return tasks;
     }
+
 
     public boolean updateTask(int taskId, String title, String description, String date, String time) {
         boolean updated = false;
