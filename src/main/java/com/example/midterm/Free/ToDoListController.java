@@ -38,6 +38,7 @@ public class ToDoListController {
     private ObservableList<Task> tasks = FXCollections.observableArrayList();
 
     private int getUserIdByUsername(String username) {
+
         return CRUDTodo.getUserIdByUsername(username);
     }
 
@@ -72,11 +73,11 @@ public class ToDoListController {
     }
 
     private void loadUserTasks() {
-        // Load tasks for the current user
+
         CRUDTodo crudTodo = new CRUDTodo();
         tasks.clear();
         tasks.addAll(crudTodo.readTasks(getUserIdByUsername(CurrentUser.getCurrentUser())));
-        taskTableView.setItems(tasks); // Update the table view with the tasks
+        taskTableView.setItems(tasks);
     }
 
     @FXML
@@ -84,16 +85,16 @@ public class ToDoListController {
         Task selectedTask = taskTableView.getSelectionModel().getSelectedItem();
         if (selectedTask != null) {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editTask.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("edittask.fxml"));
                 Parent root = fxmlLoader.load();
                 EditTaskController controller = fxmlLoader.getController();
-                controller.setTask(selectedTask); // Pass the selected task to the controller
+                controller.setTask(selectedTask);
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setTitle("Edit Task");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
-                // Refresh table view after editing
+
                 loadUserTasks();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -113,11 +114,11 @@ public class ToDoListController {
             alert.setContentText("Are you sure you want to delete this task?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                // Perform deletion
+
                 boolean deleted = CRUDTodo.deleteTask(selectedTask.getId());
                 if (deleted) {
+
                     showAlert("Task Deleted", "The selected task has been deleted.");
-                    // Refresh table view after deletion
                     loadUserTasks();
                 } else {
                     showAlert("Deletion Failed", "Failed to delete the selected task.");

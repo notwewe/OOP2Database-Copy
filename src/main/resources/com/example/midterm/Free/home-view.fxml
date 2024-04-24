@@ -9,16 +9,13 @@
       <Button fx:id="Logoutbtn" layoutX="21.0" layoutY="115.0" mnemonicParsing="false" onAction="#handleLogout" text="Logout" />
       <ToggleButton fx:id="darkModeToggle" layoutX="21.0" layoutY="155.0" mnemonicParsing="false" onAction="#toggleDarkMode" text="Dark Mode" />
 
-      <!-- Edit Account Button -->
       <Button fx:id="editAccountBtn" layoutX="20.0" layoutY="237.0" onAction="#toggleEditAccount" text="Edit Account" />
 
-      <!-- Current Username Label -->
       <Label fx:id="currentUsernameLabel" layoutX="20.0" layoutY="33.0" prefHeight="49.0" prefWidth="466.0" wrapText="true">
          <font>
             <Font name="Arial Black" size="23.0" />
          </font></Label>
 
-      <!-- Edit Account Form -->
       <VBox fx:id="editAccountForm" layoutX="186.0" layoutY="113.0" spacing="10" visible="false">
          <Label text="New Username:" />
          <TextField fx:id="currentUsernameField" />
@@ -29,10 +26,8 @@
          <Button fx:id="saveChangesBtn" onAction="#saveChanges" text="Save Changes" />
       </VBox>
 
-      <!-- Delete Account Button -->
       <Button fx:id="deleteAccountBtn" layoutX="20.0" layoutY="196.0" mnemonicParsing="false" onAction="#handleDeleteAccount" text="Delete Account" />
 
-      <!-- ToDo List Button -->
       <Button fx:id="toDoListBtn" layoutX="20.0" layoutY="277.0" onAction="#openToDoList" text="ToDo List" />
    </children>
 </AnchorPane>

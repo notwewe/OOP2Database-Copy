@@ -39,7 +39,6 @@ public class HomeController {
 
     @FXML
     void initialize() {
-        // Initialize the current username label with the current user's username
         String currentUsername = CurrentUser.getCurrentUser();
         if (currentUsername != null) {
             currentUsernameLabel.setText("Welcome, " + currentUsername + "!");

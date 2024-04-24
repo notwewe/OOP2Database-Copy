@@ -1,6 +1,5 @@
 package com.example.midterm.Free;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -10,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
-public class AddTaskController {
+public class EditTaskController {
 
     @FXML
     private TextField titleField;
@@ -27,12 +26,23 @@ public class AddTaskController {
     @FXML
     private Button saveButton;
 
-    private Task task;
+    private Task taskToEdit;
 
     private CRUDTodo crudTodo = new CRUDTodo();
 
+    public void setTask(Task task) {
+        this.taskToEdit = task;
+        titleField.setText(task.getTitle());
+        descriptionField.setText(task.getDescription());
+
+        LocalDate date = LocalDate.parse(task.getDate());
+        datePicker.setValue(date);
+        timeField.setText(task.getTime());
+    }
+
     @FXML
-    void handleSave(ActionEvent event) {
+    private void handleSave() {
+
         String title = titleField.getText();
         String description = descriptionField.getText();
         LocalDate date = datePicker.getValue();
@@ -40,33 +50,15 @@ public class AddTaskController {
         if (title.isEmpty() || description.isEmpty() || date == null || time.isEmpty()) {
             return;
         }
-        String currentUser = CurrentUser.getCurrentUser();
-        if (currentUser == null) {
-            System.out.println("No current user set.");
-            return;
-        }
-        int userId = getUserIdByUsername(currentUser);
-        if (userId == -1) {
-            System.out.println("Failed to retrieve user ID.");
-            return;
-        }
-        boolean inserted = crudTodo.insertTask(userId, title, description, date.toString(), time);
-        if (inserted) {
-            task = new Task(userId, title, description, date.toString(), time);
-            closeWindow();
-        }
-    }
 
-    private int getUserIdByUsername(String username) {
-        return CRUDTodo.getUserIdByUsername(username);
-    }
+        taskToEdit.setTitle(title);
+        taskToEdit.setDescription(description);
+        taskToEdit.setDate(date.toString());
+        taskToEdit.setTime(time);
 
-    private void closeWindow() {
+        crudTodo.updateTask(taskToEdit.getId(), taskToEdit.getTitle(), taskToEdit.getDescription(), taskToEdit.getDate(), taskToEdit.getTime());
+
         Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
-    }
-
-    public Task getTask() {
-        return task;
     }
 }

@@ -43,7 +43,6 @@ public class ToDoList {
         return CRUDTodo.getUserIdByUsername(username);
     }
 
-
     @FXML
     void initialize() {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -76,21 +75,19 @@ public class ToDoList {
     }
 
     private void loadTasksFromDatabase() {
-        // Get the current user's ID
+
         String currentUsername = CurrentUser.getCurrentUser();
         if (currentUsername == null) {
             System.out.println("No current user set.");
             return;
         }
 
-        // Retrieve the current user's ID from the database
         int userId = getUserIdByUsername(currentUsername);
         if (userId == -1) {
             System.out.println("Failed to retrieve user ID.");
             return;
         }
 
-        // Load tasks for the current user
         CRUDTodo crudTodo = new CRUDTodo();
         tasks.clear();
         tasks.addAll(crudTodo.readTasks(userId));

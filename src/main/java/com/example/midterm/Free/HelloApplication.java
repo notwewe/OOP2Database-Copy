@@ -31,23 +31,21 @@ public class HelloApplication extends Application {
     private void CreateTable() {
         try (Connection c = MySQLConnection.getConnection();
              Statement statement = c.createStatement()) {
-            // Create users table
             String usersQuery = "CREATE TABLE IF NOT EXISTS users (" +
                     "id INT PRIMARY KEY AUTO_INCREMENT," +
                     "username VARCHAR(100) NOT NULL," +
                     "password VARCHAR(100) NOT NULL)";
             statement.execute(usersQuery);
 
-            // Create todolist table
             String todolistQuery = "CREATE TABLE IF NOT EXISTS todolist (" +
                     "id INT PRIMARY KEY AUTO_INCREMENT," +
-                    "userid INT," +  // Foreign key from users table
+                    "userid INT," +
                     "title VARCHAR(100) NOT NULL," +
                     "description VARCHAR(255)," +
                     "date DATE," +
                     "time TIME," +
-                    "done BOOLEAN DEFAULT FALSE," + // Add the 'done' column with a default value
-                    "FOREIGN KEY (userid) REFERENCES users(id))";  // Define the foreign key constraint
+                    "done BOOLEAN DEFAULT FALSE," +
+                    "FOREIGN KEY (userid) REFERENCES users(id))";
             statement.execute(todolistQuery);
 
 
