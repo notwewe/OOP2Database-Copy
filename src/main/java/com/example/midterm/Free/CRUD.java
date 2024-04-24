@@ -58,7 +58,7 @@ public class CRUD {
         return check;
     }
 
-    public boolean updateData(String username, String newPassword) {
+    public static boolean updateData(String username, String newPassword) {
         boolean updated = false;
         try (Connection c = MySQLConnection.getConnection();
              PreparedStatement statement = c.prepareStatement(
@@ -75,14 +75,13 @@ public class CRUD {
         return updated;
     }
 
-    public boolean deleteData(String username, String password){
+    public static boolean deleteData(String username, String s){
         boolean deleted = false;
         try(Connection c = MySQLConnection.getConnection();
             PreparedStatement statement = c.prepareStatement(
-                    "DELETE FROM users where username = ? and password = ?"
+                    "DELETE FROM users where username = ?"
             )){
             statement.setString(1, username);
-            statement.setString(2, password);
             int rowsDeleted = statement.executeUpdate();
             System.out.println("Rows deleted: " + rowsDeleted);
             if(rowsDeleted != 0) deleted = true;
@@ -92,4 +91,5 @@ public class CRUD {
         }
         return deleted;
     }
+
 }

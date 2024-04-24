@@ -31,5 +31,8 @@
 
       <!-- Delete Account Button -->
       <Button fx:id="deleteAccountBtn" layoutX="20.0" layoutY="196.0" mnemonicParsing="false" onAction="#handleDeleteAccount" text="Delete Account" />
+
+      <!-- ToDo List Button -->
+      <Button fx:id="toDoListBtn" layoutX="20.0" layoutY="277.0" onAction="#openToDoList" text="ToDo List" />
    </children>
 </AnchorPane>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.midterm.Free.ToDoListController">
+    <children>
+        <VBox alignment="CENTER" layoutX="1.0" layoutY="58.0" prefHeight="217.0" prefWidth="568.0">
+            <!-- Table view to display tasks -->
+            <TableView fx:id="taskTableView" prefHeight="217.0" prefWidth="563.0">
+                <columns>
+                    <!-- Define columns for task properties -->
+                    <TableColumn fx:id="titleColumn" prefWidth="151.0" text="Title">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="title" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="descriptionColumn" prefWidth="245.0" text="Description">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="description" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="dateColumn" prefWidth="84.0" text="Due Date">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="date" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="timeColumn" prefWidth="87.0" text="Due Time">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="time" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </VBox>
+        <VBox alignment="CENTER" layoutX="61.0" layoutY="291.0" prefHeight="60.0" prefWidth="447.0" spacing="10">
+            <Button fx:id="addTaskBtn" mnemonicParsing="false" onAction="#handleAddTask" text="Add Task" />
+            <Button fx:id="editTaskBtn" mnemonicParsing="false" onAction="#handleEditTask" text="Edit Task" />
+            <Button fx:id="deleteTaskBtn" mnemonicParsing="false" onAction="#handleDeleteTask" text="Delete Task" />
+        </VBox>
+        <Label layoutX="221.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="127.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="To Do List" />
+    </children>
+</AnchorPane>

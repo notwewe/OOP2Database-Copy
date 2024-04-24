@@ -28,7 +28,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label alignment="CENTER" prefHeight="49.0" prefWidth="119.0" text="Welcome!" textAlignment="CENTER" GridPane.columnIndex="1">
+                        <Label alignment="CENTER" prefHeight="49.0" prefWidth="119.0" text="Login" GridPane.columnIndex="1">
                             <font>
                                 <Font name="Arial Bold" size="22.0" />
                             </font></Label>

@@ -3,18 +3,25 @@ package com.example.midterm.Free;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.*;
 
 import static java.lang.String.*;
+
+import javafx.scene.input.MouseEvent;
+
 
 public class HomeController {
 
@@ -75,7 +82,7 @@ public class HomeController {
             return;
         }
 
-        if (updateAccount(newUsername, newPassword)) {
+        if (CRUD.updateData(newUsername, newPassword)) {
             showAlert(Alert.AlertType.INFORMATION, "Success", "Account Updated", "Your account has been successfully updated.");
         } else {
             showAlert(Alert.AlertType.ERROR, "Error", "Update Failed", "Failed to update account. Please try again.");
@@ -145,12 +152,11 @@ public class HomeController {
             if (response == ButtonType.OK) {
                 String username = CurrentUser.getCurrentUser();
                 if (username == null) {
-
                     System.err.println("No current user set.");
                     return;
                 }
 
-                boolean success = deleteAccountFromDatabase(username);
+                boolean success = CRUD.deleteData(username, "");
                 if (success) {
                     System.out.println("Account deletion successful!");
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -225,5 +231,23 @@ public class HomeController {
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void openToDoList(ActionEvent event) {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("todolist.fxml"));
+            Scene homepageScene = new Scene(root, 568, 400);
+
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            window.setScene(homepageScene);
+            window.setResizable(true);
+            window.show();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

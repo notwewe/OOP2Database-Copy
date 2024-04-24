@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.midterm.Free.AddTaskController">
+    <children>
+        <VBox alignment="CENTER" prefHeight="320.0" prefWidth="300.0" spacing="10.0">
+            <Label text="Title:" />
+            <TextField fx:id="titleField" />
+            <Label text="Description:" />
+            <!-- Corrected fx:id to "descriptionField" -->
+            <TextArea fx:id="descriptionField" prefHeight="200.0" prefWidth="200.0" />
+            <Label text="Date:" />
+            <DatePicker fx:id="datePicker" />
+            <Label text="Time:" />
+            <TextField fx:id="timeField" />
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+        </VBox>
+    </children>
+</AnchorPane>
+

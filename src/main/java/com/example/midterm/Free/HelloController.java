@@ -62,14 +62,6 @@ public class HelloController {
     }
 
     @FXML
-    protected void onLogoutButtonClick() throws IOException {
-        Parent scene = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
-
-        pnLogout.getChildren().clear();
-        pnLogout.getChildren().add(scene);
-    }
-
-    @FXML
     protected void onRegisterButtonClick() throws IOException {
         Parent welcomeScene = FXMLLoader.load(getClass().getResource("welcome.fxml"));
         UsernameField.getScene().setRoot(welcomeScene);

@@ -19,8 +19,7 @@ public class HelloApplication extends Application {
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root, 433, 384);
 
-
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setScene(scene);
         stage.setTitle("Hello!");
 
@@ -30,18 +29,33 @@ public class HelloApplication extends Application {
     }
 
     private void CreateTable() {
-            try (Connection c = MySQLConnection.getConnection();
-                 Statement statement = c.createStatement()) {
-                String query = "CREATE TABLE IF NOT EXISTS users (" +
-                        "id INT PRIMARY KEY AUTO_INCREMENT," +
-                        "username VARCHAR(100) NOT NULL," +
-                        "password VARCHAR(100) NOT NULL)";
-                statement.execute(query);
-                System.out.println("Table created successfully!");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        try (Connection c = MySQLConnection.getConnection();
+             Statement statement = c.createStatement()) {
+            // Create users table
+            String usersQuery = "CREATE TABLE IF NOT EXISTS users (" +
+                    "id INT PRIMARY KEY AUTO_INCREMENT," +
+                    "username VARCHAR(100) NOT NULL," +
+                    "password VARCHAR(100) NOT NULL)";
+            statement.execute(usersQuery);
+
+            // Create todolist table
+            String todolistQuery = "CREATE TABLE IF NOT EXISTS todolist (" +
+                    "id INT PRIMARY KEY AUTO_INCREMENT," +
+                    "userid INT," +  // Foreign key from users table
+                    "title VARCHAR(100) NOT NULL," +
+                    "description VARCHAR(255)," +
+                    "date DATE," +
+                    "time TIME," +
+                    "done BOOLEAN DEFAULT FALSE," + // Add the 'done' column with a default value
+                    "FOREIGN KEY (userid) REFERENCES users(id))";  // Define the foreign key constraint
+            statement.execute(todolistQuery);
+
+
+            System.out.println("Tables created successfully!");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
 
 
     public static void main(String[] args) {
