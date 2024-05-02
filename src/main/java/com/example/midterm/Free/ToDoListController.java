@@ -55,9 +55,13 @@ public class ToDoListController {
     @FXML
     void handleAddTask() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addTask.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addtask.fxml"));
             Parent root = fxmlLoader.load();
             AddTaskController controller = fxmlLoader.getController();
+
+            // Pass the taskTableView instance
+            controller.setTaskTableView(taskTableView);
+
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Add Task");

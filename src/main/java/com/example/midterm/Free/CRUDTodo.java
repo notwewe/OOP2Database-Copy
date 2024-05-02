@@ -1,9 +1,6 @@
 package com.example.midterm.Free;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +27,8 @@ public class CRUDTodo {
         boolean inserted = false;
         try (Connection c = MySQLConnection.getConnection();
              PreparedStatement statement = c.prepareStatement(
-                     "INSERT INTO todolist (userid, title, description, date, time) VALUES (?, ?, ?, ?, ?)"
+                     "INSERT INTO todolist (userid, title, description, date, time) VALUES (?, ?, ?, ?, ?)",
+                     Statement.RETURN_GENERATED_KEYS // Retrieve generated keys
              )) {
             statement.setInt(1, userId);
             statement.setString(2, title);
@@ -39,6 +37,7 @@ public class CRUDTodo {
             statement.setString(5, time);
             int num = statement.executeUpdate();
             if (num != 0) {
+                // Task inserted successfully
                 inserted = true;
                 System.out.println("Task inserted successfully!");
             }
@@ -48,6 +47,7 @@ public class CRUDTodo {
         }
         return inserted;
     }
+
 
     public List<Task> readTasks(int userId) {
         List<Task> tasks = new ArrayList<>();

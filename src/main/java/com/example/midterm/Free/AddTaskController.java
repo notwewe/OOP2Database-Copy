@@ -2,13 +2,11 @@ package com.example.midterm.Free;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class AddTaskController {
 
@@ -27,9 +25,20 @@ public class AddTaskController {
     @FXML
     private Button saveButton;
 
+    private TableView<Task> taskTableView;
+
+    public void setTaskTableView(TableView<Task> taskTableView) {
+        this.taskTableView = taskTableView;
+    }
     private Task task;
 
     private CRUDTodo crudTodo = new CRUDTodo();
+
+    private ToDoListController parentController;
+
+    public void setParentController(ToDoListController parentController) {
+        this.parentController = parentController;
+    }
 
     @FXML
     void handleSave(ActionEvent event) {
@@ -50,12 +59,26 @@ public class AddTaskController {
             System.out.println("Failed to retrieve user ID.");
             return;
         }
+
         boolean inserted = crudTodo.insertTask(userId, title, description, date.toString(), time);
         if (inserted) {
-            task = new Task(userId, title, description, date.toString(), time);
+            // Task inserted successfully
+            System.out.println("Task inserted successfully!");
+
+            // Reload tasks for the current user
+            List<Task> userTasks = crudTodo.readTasks(userId);
+
+            // Update the table view items directly
+            taskTableView.getItems().setAll(userTasks);
+
+            // Close the window
             closeWindow();
+        } else {
+            // Failed to insert task
+            System.out.println("Failed to insert task");
         }
     }
+
 
     private int getUserIdByUsername(String username) {
         return CRUDTodo.getUserIdByUsername(username);
